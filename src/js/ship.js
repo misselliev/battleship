@@ -1,5 +1,8 @@
+import game from './gameboard';
+
 const ship = {
   generatorOne: (positions) => {
+    game.shipPositions.push(positions);
     return {
       float: true,
       length: 1,
@@ -7,6 +10,7 @@ const ship = {
     };
   },
   generatorTwo: (positions) => {
+    game.shipPositions.push(positions);
     return {
       float: true,
       length: 2,
@@ -17,6 +21,7 @@ const ship = {
     };
   },
   generatorThree: (positions) => {
+    game.shipPositions.push(positions);
     return {
       float: true,
       length: 3,
