@@ -1,0 +1,29 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "JS battleship game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misselliev/battleship.git"
+  },
+  "keywords": [
+    "javascript",
+    "jest",
+    "battleship",
+    "tdd"
+  ],
+  "author": "Elizabeth Villalejos, Santiago Torres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misselliev/battleship/issues"
+  },
+  "homepage": "https://github.com/misselliev/battleship#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.1",
+    "jest": "^24.9.0"
+  }
+}
