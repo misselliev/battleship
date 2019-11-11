@@ -1,19 +1,19 @@
 const game = require('../js/gameboard');
 const ship = require('../js/ship');
 
-const obj2 = ship.generatorThree([
+game.board();
+const obj3 = ship.generatorThree('human',
+[
   { x: 0, y: 0 },
   { x: 0, y: 1 },
   { x: 0, y: 2 }
 ]);
-const obj3 = ship.generatorTwo([
+const obj2 = ship.generatorTwo('human', [
   { x: 0, y: 4 },
   { x: 1, y: 4 }
 ]);
-const obj4 = ship.generatorOne([
-  { x: 0, y: 0 },
-  { x: 0, y: 1 },
-  { x: 0, y: 2 }
+const obj1 = ship.generatorOne('human', [
+  { x: 3, y: 3 }
 ]);
 
 
@@ -52,14 +52,12 @@ test('board.game object exists', () => {
 
 describe('check game integrity', () => {
   test('board size must be 25 after inital game.board() setup', () => {
-    game.board();
     expect(game.layout.length).toBe(25);
   });
   
-  test('game.fleetPosition() must save registers of the shoots', () => {
-    expect(game.fleetPosition().length).toBe(3);
-  
-
+  test('game.fleetPosition() and game.waterPosition() must return the places occupied by ships and water', () => {
+    expect(game.fleetPosition().length).toBe(6);    
+    expect(game.waterPosition().length).toBe(19);
   });
 
 });

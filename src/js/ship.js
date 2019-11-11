@@ -1,16 +1,26 @@
-import game from './gameboard';
+const game = require('./gameboard');
 
 const ship = {
-  generatorOne: (positions) => {
-    game.shipPositions.push(positions);
+  layoutUpdater: (player, positions) => {
+    game.layout.map(item => {
+      positions.forEach(pos => {
+        if (item.x == pos.x && item.y == pos.y) {
+          item.water = false;
+          item.owner = player;
+        }
+      });
+    });
+  },
+  generatorOne: (player, positions) => {
+    ship.layoutUpdater(player, positions);
     return {
       float: true,
       length: 1,
       pos: [{ x: positions[0].x, y: positions[0].y, ok: true }]
     };
   },
-  generatorTwo: (positions) => {
-    game.shipPositions.push(positions);
+  generatorTwo: (player, positions) => {
+    ship.layoutUpdater(player, positions);
     return {
       float: true,
       length: 2,
@@ -20,8 +30,8 @@ const ship = {
       ]
     };
   },
-  generatorThree: (positions) => {
-    game.shipPositions.push(positions);
+  generatorThree: (player, positions) => {
+    ship.layoutUpdater(player, positions);
     return {
       float: true,
       length: 3,

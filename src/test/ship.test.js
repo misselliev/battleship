@@ -1,6 +1,6 @@
 const ship = require('../js/ship');
 
-const obj2 = ship.generatorThree([
+const obj2 = ship.generatorThree('human', [
   { x: 0, y: 0 },
   { x: 0, y: 1 },
   { x: 0, y: 2 }
