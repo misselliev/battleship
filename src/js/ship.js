@@ -1,7 +1,7 @@
-const game = require("../js/gameboard");
+import { game } from "./gameboard";
 
 const container = [];
-const ship = {
+export const ship = {
   layoutUpdater: (player, positions) => {
     game.layout.map(item => {
       positions.forEach(pos => {
@@ -26,7 +26,6 @@ const ship = {
 
     game.setShipPosition(ship);
     container.push(ship);
-    console.log('==== OK =====')
     return ship;
   },
 
@@ -47,5 +46,3 @@ const ship = {
     if (boat[0]) ship.isSunk(boat[0]);
   }
 };
-
-module.exports = ship;

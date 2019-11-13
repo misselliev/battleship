@@ -1,9 +1,10 @@
-const _ship = require('../js/ship');
+import { ship } from "./ship";
+const _ship = ship;
 
 const computeIdx = (posX, posY) => posX * boardSize + posY;
 const boardSize = 5;
 
-const game = {
+export const game = {
   layout: [],
   shipPositions: [],
   missedHits: [],
@@ -14,7 +15,7 @@ const game = {
           x: i,
           y: j,
           water: true,
-          shipId: '',
+          shipId: "",
           hit: false,
           used: false,
           length: 0
@@ -23,15 +24,15 @@ const game = {
     }
     return game.layout;
   },
-  getShips: () => game.layout.filter((cell) => !cell.water),
-  getUsedCells: () => game.layout.filter((cell) => cell.used),
+  getShips: () => game.layout.filter(cell => !cell.water),
+  getUsedCells: () => game.layout.filter(cell => cell.used),
   setUsedCell: (posX, posY) => {
     const idx = computeIdx(posX, posY);
     game.layout[idx].used = true;
   },
-  waterPosition: () => game.layout.filter((cell) => cell.water),
-  setShipPosition: (ship) => {
-    Object.keys(ship.pos).forEach((key) => {
+  waterPosition: () => game.layout.filter(cell => cell.water),
+  setShipPosition: ship => {
+    Object.keys(ship.pos).forEach(key => {
       const idx = computeIdx(ship.pos[key].x, ship.pos[key].y);
       game.layout[idx].water = false;
       game.layout[idx].shipId = ship.id;
@@ -40,11 +41,10 @@ const game = {
   },
   receiveAttack: (posX, posY) => {
     const myBoats = game.getShips();
-    const temp = myBoats.filter((ship) => ship.x == posX && ship.y == posY);
+    const temp = myBoats.filter(ship => ship.x == posX && ship.y == posY);
     if (temp) {
       game.setUsedCell(posX, posY);
       _ship.hit(posX, posY);
     }
   }
 };
-module.exports = game;
