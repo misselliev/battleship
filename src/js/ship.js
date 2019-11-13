@@ -1,4 +1,4 @@
-const game = require("./gameboard");
+const game = require("../js/gameboard");
 
 const container = [];
 const ship = {
@@ -23,8 +23,10 @@ const ship = {
       ship.pos[idx] = data;
       ship.pos[idx].ok = true;
     });
+
     game.setShipPosition(ship);
     container.push(ship);
+    console.log('==== OK =====')
     return ship;
   },
 

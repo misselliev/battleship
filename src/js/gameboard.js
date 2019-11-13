@@ -1,5 +1,8 @@
+const _ship = require('../js/ship');
+
 const computeIdx = (posX, posY) => posX * boardSize + posY;
 const boardSize = 5;
+
 const game = {
   layout: [],
   shipPositions: [],
@@ -37,10 +40,10 @@ const game = {
   },
   receiveAttack: (posX, posY) => {
     const myBoats = game.getShips();
-    const temp = myBoats.select((ship) => ship.x == posX && ship.y == posY);
+    const temp = myBoats.filter((ship) => ship.x == posX && ship.y == posY);
     if (temp) {
-      game.setUsedCells(posX, posY);
-      ship.hit(posX, posY);
+      game.setUsedCell(posX, posY);
+      _ship.hit(posX, posY);
     }
   }
 };

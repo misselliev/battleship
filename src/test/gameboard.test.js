@@ -1,5 +1,6 @@
-const game = require('../js/gameboard');
 const ship = require('../js/ship');
+const game = require('../js/gameboard');
+
 
 const boardgame = game.board();
 
@@ -33,4 +34,9 @@ describe('check game integrity', () => {
       expect(ship.shipId).toBe(`ship-${size}`);
     });
   });
+
+  test('checking receiveAttack()', () => {
+    game.receiveAttack(4, 4);
+    expect(obj1.float).toBe(false);
+  })
 });
