@@ -13,7 +13,8 @@ const game = {
           water: true,
           shipId: '',
           hit: false,
-          used: false
+          used: false,
+          length: 0
         });
       }
     }
@@ -30,9 +31,17 @@ const game = {
     Object.keys(ship.pos).forEach((key) => {
       const idx = computeIdx(ship.pos[key].x, ship.pos[key].y);
       game.layout[idx].water = false;
+      game.layout[idx].shipId = ship.id;
+      game.layout[idx].length = ship.length;
     });
   },
-  receiveAttack: (pos) => {}
+  receiveAttack: (posX, posY) => {
+    const myBoats = game.getShips();
+    const temp = myBoats.select((ship) => ship.x == posX && ship.y == posY);
+    if (temp) {
+      game.setUsedCells(posX, posY);
+      ship.hit(posX, posY);
+    }
+  }
 };
-
 module.exports = game;

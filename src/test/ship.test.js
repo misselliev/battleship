@@ -13,6 +13,9 @@ describe('testing a ship integrity', () => {
   test('ship status is true for init', () => {
     expect(obj1.float).toBe(true);
   });
+  test('ship has an id', () => {
+    expect(obj1.id).toBeDefined();
+  });
   test('ship length is correct for init', () => {
     expect(obj1.length).toBe(1);
   });
@@ -34,18 +37,18 @@ describe('testing a ship integrity', () => {
 
 describe('testing a ship functions', () => {
   test('ship.pos.ok == false when a ship is impacted if position exists', () => {
-    ship.hit(obj2, 0, 0);
+    ship.hit(0, 0);
     expect(obj2.pos[0].ok).toBe(false);
   });
   test('a ship is not impacted if position doesnt exists', () => {
-    ship.hit(obj2, 0, 3);
+    // ship.hit(0, 3);
     expect(obj2.pos[0].ok).toBe(false);
     expect(obj2.pos[1].ok).toBe(true);
     expect(obj2.pos[2].ok).toBe(true);
   });
   test('a ship isSunk() if all positions are hit', () => {
-    ship.hit(obj2, 0, 1);
-    ship.hit(obj2, 0, 2);
+    // ship.hit(0, 1);
+    // ship.hit(0, 2);
     expect(obj2.float).toBe(false);
   });
 });

@@ -25,4 +25,12 @@ describe('check game integrity', () => {
     expect(game.waterPosition().length).toBe(19);
     expect(game.getShips().length).toBe(6);
   });
+
+  test('board cells where a ship is contain its id', () => {
+    const cells = game.getShips();
+    cells.forEach((ship) => {
+      const size = ship.length;
+      expect(ship.shipId).toBe(`ship-${size}`);
+    });
+  });
 });
