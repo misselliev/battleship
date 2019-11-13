@@ -29,29 +29,20 @@ const ship = {
   },
 
   isSunk: boat => {
-    const sunk = Object.keys(boat.pos).filter(element => !element.ok);
-    if (sunk.length === boat.length) boat.float = false;
+    const status = Object.keys(boat.pos).filter(key => !boat.pos[key].ok);
+    if (status.length === boat.length) boat.float = false;
   },
 
   hit: (xx, yy) => {
-    const boat = container.filter(ship => ship.x == xx && ship.y == yy);
-    const boat2 = container.forEach(ship => console.log(ship.pos));
-    if (boat) {
-      console.log("container" + JSON.stringify(container));
-      console.log("positios" + Object.keys(boat));
-      console.log("boat:" + JSON.stringify(boat));
-      console.log("boat:" + JSON.stringify(boat2));
-      Object.keys(boat.pos).map(key => {
-        console.log(boat.pos[key].x + " ---y " + boat.pos[key].y);
-        if (xx == boat.pos[key].x && yy == boat.pos[key].y) {
-          console.log("en if");
-          boat.pos[key].ok = false;
+    const boat = container.filter(ship => {
+      for (let key in ship.pos) {
+        if (xx == ship.pos[key].x && yy == ship.pos[key].y) {
+          ship.pos[key].ok = false;
+          return ship;
         }
-      });
-      ship.isSunk(boat);
-    }
-    console.log("cont" + JSON.stringify(container[0]));
-    console.log("cont1" + JSON.stringify(container[1]));
+      }
+    });
+    if (boat[0]) ship.isSunk(boat[0]);
   }
 };
 

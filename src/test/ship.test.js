@@ -41,14 +41,14 @@ describe('testing a ship functions', () => {
     expect(obj2.pos[0].ok).toBe(false);
   });
   test('a ship is not impacted if position doesnt exists', () => {
-    // ship.hit(0, 3);
+    ship.hit(0, 3);
     expect(obj2.pos[0].ok).toBe(false);
     expect(obj2.pos[1].ok).toBe(true);
     expect(obj2.pos[2].ok).toBe(true);
   });
   test('a ship isSunk() if all positions are hit', () => {
-    // ship.hit(0, 1);
-    // ship.hit(0, 2);
+    ship.hit(0, 1);
+    ship.hit(0, 2);
     expect(obj2.float).toBe(false);
   });
 });
