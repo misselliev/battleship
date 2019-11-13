@@ -1,14 +1,18 @@
 import { board } from "../js/gameboard";
 import { ship } from "../js/ship";
-const boardgame = board.grid();
 
-const obj1 = ship.generator([{ x: 4, y: 4 }]);
-const obj2 = ship.generator([
-  { x: 0, y: 0 },
-  { x: 0, y: 1 },
-  { x: 0, y: 2 }
-]);
+let boardgame;
+let obj1, obj2, obj3;
 
+beforeAll(() => {
+  boardgame = board.grid();
+  obj1 = ship.generator([{ x: 4, y: 4 }]);
+  obj2 = ship.generator([
+    { x: 0, y: 0 },
+    { x: 0, y: 1 },
+    { x: 0, y: 2 }
+  ]);
+});
 test("ship object exists", () => {
   expect(obj1).toBeDefined();
 });
