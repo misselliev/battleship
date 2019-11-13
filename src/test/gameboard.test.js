@@ -41,8 +41,33 @@ describe("check game integrity", () => {
     });
   });
 
-  test("checking receiveAttack()", () => {
+  test("receiveAttack() must set the ship.float = false if the boat has only one position left", () => {
     game.receiveAttack(4, 4);
     expect(obj1.float).toBe(false);
   });
+
+  test("receiveAttack() must update certain cell as used in the layout.board and check as hit if ther is a ship", () => {
+    const posX = 0;
+    const posY = 2;
+    game.receiveAttack(posX, posY);
+    const usedCell = game.getUsedCells().filter(cell => cell.x == posX && cell.y == posY)
+    expect(usedCell[0].used).toBe(true);
+    expect(usedCell[0].hit).toBe(true);
+  });
+
+  test('gameOver() returns true if there are no ships to hit', () => {
+    game.receiveAttack(0, 0);
+    game.receiveAttack(0, 1);
+    game.receiveAttack(2, 4);
+    game.receiveAttack(2, 3);
+    expect(game.gameOver()).toBe(true);
+  })
+
+  test('getMissedHits() should return all the cells where the player has shoot and there are no ships', () => {
+    expect(game.getMissedHits().length).toBe(0);
+    game.receiveAttack(2, 1);
+    expect(game.getMissedHits().length).toBe(1);
+    game.receiveAttack(3, 1);
+    expect(game.getMissedHits().length).toBe(2);
+  })
 });

@@ -28,7 +28,12 @@ export const game = {
   getUsedCells: () => game.layout.filter(cell => cell.used),
   setUsedCell: (posX, posY) => {
     const idx = computeIdx(posX, posY);
-    game.layout[idx].used = true;
+    const cell = game.layout[idx];
+    cell.used = true;
+    if (!cell.hit) cell.hit = true;
+  },
+  getMissedHits: () => {
+    return game.layout.filter(cell => (cell.used && cell.water));
   },
   waterPosition: () => game.layout.filter(cell => cell.water),
   setShipPosition: ship => {
@@ -45,6 +50,11 @@ export const game = {
     if (temp) {
       game.setUsedCell(posX, posY);
       _ship.hit(posX, posY);
+    } else {
+      game.setMissedHits(posX, posY);
     }
+  },
+  gameOver: () => {
+    return game.getShips().every(cell => cell.hit);
   }
 };
