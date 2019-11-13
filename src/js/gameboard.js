@@ -23,6 +23,7 @@ export const board = {
   },
   getShips: () => board.layout.filter(cell => !cell.water),
   getUsedCells: () => board.layout.filter(cell => cell.used),
+  getFreeCells: () => board.layout.filter(cell => !cell.used),
   setUsedCell: (posX, posY) => {
     const idx = computeIdx(posX, posY);
     const cell = board.layout[idx];
@@ -45,9 +46,10 @@ export const board = {
     const temp = myBoats.filter(ship => ship.x == posX && ship.y == posY);
     board.setUsedCell(posX, posY);
     if (temp) {
-      _ship.hit(posX, posY);
+      return _ship.hit(posX, posY);
     } else {
       board.setMissedHits(posX, posY);
+      return false
     }
   },
   gameOver: () => {

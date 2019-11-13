@@ -1,9 +1,9 @@
-import { game } from "./gameboard";
+import { board } from "./gameboard";
 
 const container = [];
 export const ship = {
   layoutUpdater: (player, positions) => {
-    game.layout.map(item => {
+    board.layout.map(item => {
       positions.forEach(pos => {
         if (item.x == pos.x && item.y == pos.y) {
           item.water = false;
@@ -24,7 +24,7 @@ export const ship = {
       ship.pos[idx].ok = true;
     });
 
-    game.setShipPosition(ship);
+    board.setShipPosition(ship);
     container.push(ship);
     return ship;
   },
@@ -43,6 +43,11 @@ export const ship = {
         }
       }
     });
-    if (boat[0]) ship.isSunk(boat[0]);
+    if (boat[0]) {
+      ship.isSunk(boat[0]);
+      return true
+    } else {
+      return false
+    }
   }
 };

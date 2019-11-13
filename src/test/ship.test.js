@@ -1,6 +1,6 @@
-import { game } from "../js/gameboard";
+import { board } from "../js/gameboard";
 import { ship } from "../js/ship";
-const boardgame = game.board();
+const boardgame = board.grid();
 
 const obj1 = ship.generator([{ x: 4, y: 4 }]);
 const obj2 = ship.generator([

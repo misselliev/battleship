@@ -1,7 +1,7 @@
-import { game } from "../js/gameboard";
+import { board } from "../js/gameboard";
 import { ship } from "../js/ship";
 
-const boardgame = game.board();
+const boardgame = board.grid();
 
 const obj1 = ship.generator([{ x: 4, y: 4 }]);
 const obj2 = ship.generator([
@@ -20,21 +20,21 @@ test("board object exists", () => {
 });
 
 test("board.game object exists", () => {
-  expect(game.board).toBeDefined();
+  expect(board.grid).toBeDefined();
 });
 
 describe("check game integrity", () => {
   test("board size must be 25 after inital game.board() setup", () => {
-    expect(game.layout.length).toBe(25);
+    expect(board.layout.length).toBe(25);
   });
 
   test("game.getShips() and game.waterPosition() must return the places occupied by ships and water", () => {
-    expect(game.waterPosition().length).toBe(19);
-    expect(game.getShips().length).toBe(6);
+    expect(board.waterPosition().length).toBe(19);
+    expect(board.getShips().length).toBe(6);
   });
 
   test("board cells where a ship is contain its id", () => {
-    const cells = game.getShips();
+    const cells = board.getShips();
     cells.forEach(ship => {
       const size = ship.length;
       expect(ship.shipId).toBe(`ship-${size}`);
@@ -42,32 +42,31 @@ describe("check game integrity", () => {
   });
 
   test("receiveAttack() must set the ship.float = false if the boat has only one position left", () => {
-    game.receiveAttack(4, 4);
+    board.receiveAttack(4, 4);
     expect(obj1.float).toBe(false);
   });
 
-  test("receiveAttack() must update certain cell as used in the layout.board and check as hit if ther is a ship", () => {
+  test("receiveAttack() must update certain cell as used in the layout.board", () => {
     const posX = 0;
     const posY = 2;
-    game.receiveAttack(posX, posY);
-    const usedCell = game.getUsedCells().filter(cell => cell.x == posX && cell.y == posY)
+    board.receiveAttack(posX, posY);
+    const usedCell = board.getUsedCells().filter(cell => cell.x == posX && cell.y == posY)
     expect(usedCell[0].used).toBe(true);
-    expect(usedCell[0].hit).toBe(true);
   });
 
   test('gameOver() returns true if there are no ships to hit', () => {
-    game.receiveAttack(0, 0);
-    game.receiveAttack(0, 1);
-    game.receiveAttack(2, 4);
-    game.receiveAttack(2, 3);
-    expect(game.gameOver()).toBe(true);
+    board.receiveAttack(0, 0);
+    board.receiveAttack(0, 1);
+    board.receiveAttack(2, 4);
+    board.receiveAttack(2, 3);
+    expect(board.gameOver()).toBe(true);
   })
 
   test('getMissedHits() should return all the cells where the player has shoot and there are no ships', () => {
-    expect(game.getMissedHits().length).toBe(0);
-    game.receiveAttack(2, 1);
-    expect(game.getMissedHits().length).toBe(1);
-    game.receiveAttack(3, 1);
-    expect(game.getMissedHits().length).toBe(2);
+    expect(board.getMissedHits().length).toBe(0);
+    board.receiveAttack(2, 1);
+    expect(board.getMissedHits().length).toBe(1);
+    board.receiveAttack(3, 1);
+    expect(board.getMissedHits().length).toBe(2);
   })
 });
