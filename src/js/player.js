@@ -1,10 +1,10 @@
-import {board} from './gameboard';
+import { board } from "./gameboard";
 
-const giveMeOneFreeCell = () => {
+export const giveMeOneFreeCell = () => {
   const freeCells = board.getFreeCells();
   const idx = Math.floor(Math.random() * freeCells.length);
   return freeCells[idx];
-}
+};
 
 export const player = {
   shoot: (xx, yy) => board.receiveAttack(xx, yy),
@@ -13,11 +13,11 @@ export const player = {
     let cell = giveMeOneFreeCell();
     return board.receiveAttack(cell.x, cell.y);
   },
-  bonus: (shoot) => {
+  bonus: shoot => {
     while (shoot && board.getFreeCells().length > 0) {
       const cell = giveMeOneFreeCell();
       shoot = board.receiveAttack(cell.x, cell.y);
     }
     return board.getUsedCells().length;
   }
-}
+};

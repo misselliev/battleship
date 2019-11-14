@@ -1,7 +1,6 @@
 import { board } from "../js/gameboard";
 import { ship } from "../js/ship";
 import { player } from "../js/player";
-import { log } from "util";
 
 test("player object exists", () => {
   expect(player).toBeDefined();

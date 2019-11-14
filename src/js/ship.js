@@ -45,9 +45,9 @@ export const ship = {
     });
     if (boat[0]) {
       ship.isSunk(boat[0]);
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 };
