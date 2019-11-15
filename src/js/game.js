@@ -10,16 +10,14 @@ export const game = {
     const board2 = _board();
     board1.setGrid();
     board2.setGrid();
-    board1.getGrid()[0].id = 'haaaa'
-    board2.getGrid()[0].id = 'ohhh'
     return [board1, board2];
   },
-  randomizeSmallShip: () => {
-    let { x, y } = giveMeOneFreeCell();
-    return ship.generator([{ x, y }]);
+  randomizeSmallShip: (board, name = "computer") => {
+    let { x, y } = giveMeOneFreeCell(board);
+    return ship.generator([{ x, y }], board, name);
   },
-  randomizeBigShip: positions => {
+  randomizeBigShip: (positions, board, name = "computer") => {
     let arr = decode(positions);
-    return ship.generator(arr);
+    return ship.generator(arr, board, name);
   }
 };

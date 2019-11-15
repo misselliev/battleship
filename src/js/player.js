@@ -1,23 +1,25 @@
-import { board as _board} from "./gameboard";
+import { board as _board } from "./gameboard";
 
-export const giveMeOneFreeCell = (board) => {
+export const giveMeOneFreeCell = board => {
   const freeCells = board.getFreeCells();
   const idx = Math.floor(Math.random() * freeCells.length);
   return freeCells[idx];
 };
 
-export const player = {
-  shoot: (xx, yy) => board.receiveAttack(xx, yy),
+export const player = () => {
+  const shoot = (xx, yy, oponent, boardObj) =>
+    boardObj.receiveAttack(xx, yy, oponent, boardObj);
 
-  random: () => {
-    let cell = giveMeOneFreeCell(grid);
-    return board.receiveAttack(cell.x, cell.y);
-  },
-  bonus: (shoot, grid) => {
-    while (shoot && grid.getFreeCells().length > 0) {
-      const cell = giveMeOneFreeCell(grid);
-      shoot = grid.receiveAttack(cell.x, cell.y);
+  const randomShoot = (oponent, boardObj) => {
+    let cell = giveMeOneFreeCell(boardObj);
+    return boardObj.receiveAttack(cell.x, cell.y, oponent, boardObj);
+  };
+  const bonus = (shoot, oponent, boardObj) => {
+    while (shoot && boardObj.getFreeCells().length > 0) {
+      const cell = giveMeOneFreeCell(boardObj);
+      shoot = boardObj.receiveAttack(cell.x, cell.y, oponent, boardObj);
     }
-    return grid.getUsedCells().length;
-  }
+    return boardObj.getUsedCells().length;
+  };
+  return { shoot, randomShoot, bonus };
 };
