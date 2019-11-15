@@ -30,7 +30,7 @@ export const board = {
     cell.used = true;
   },
   getMissedHits: () => {
-    return board.layout.filter(cell => (cell.used && cell.water));
+    return board.layout.filter(cell => cell.used && cell.water);
   },
   waterPosition: () => board.layout.filter(cell => cell.water),
   setShipPosition: ship => {
@@ -49,7 +49,7 @@ export const board = {
       return _ship.hit(posX, posY);
     } else {
       board.setMissedHits(posX, posY);
-      return false
+      return false;
     }
   },
   gameOver: () => {
