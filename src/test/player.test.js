@@ -1,13 +1,16 @@
-import { board } from "../js/gameboard";
+import { board as _board} from "../js/gameboard";
 import { ship } from "../js/ship";
 import { player } from "../js/player";
+
+let board, gridPlayer;
 
 test("player object exists", () => {
   expect(player).toBeDefined();
 });
 
 beforeAll(() => {
-  board.grid();
+  board = _board();
+  gridPlayer = board.setGrid();
   ship.generator([{ x: 4, y: 4 }]);
   ship.generator([
     { x: 0, y: 0 },

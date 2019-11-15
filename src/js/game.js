@@ -1,17 +1,18 @@
 import { ship } from "./ship";
-import { board } from "./gameboard";
+import { board as _board } from "./gameboard";
 import { player } from "./player";
 import { giveMeOneFreeCell } from "./player";
 import { getZones, decode } from "./zone";
-// import { decode } from "./zone";
 
 export const game = {
   setup: () => {
-    let playerBoard = board.grid();
-    let computerBoard = board.grid();
-    // playerBoard[0].id = "holaa";
-
-    return { playerBoard, computerBoard };
+    const board1 = _board();
+    const board2 = _board();
+    board1.setGrid();
+    board2.setGrid();
+    board1.getGrid()[0].id = 'haaaa'
+    board2.getGrid()[0].id = 'ohhh'
+    return [board1, board2];
   },
   randomizeSmallShip: () => {
     let { x, y } = giveMeOneFreeCell();

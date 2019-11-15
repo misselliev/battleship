@@ -1,15 +1,16 @@
-import { board } from "../js/gameboard";
+import { board as _board} from "../js/gameboard";
 import { ship } from "../js/ship";
 import { player } from "../js/player";
 import { game } from "../js/game";
 import { getZones } from "../js/zone";
 
 let grid = {};
-let obj1, obj2, obj3, obj4, obj5, obj6;
+let board, obj1, obj2, obj3, obj4, obj5, obj6;
 let ships = [];
 beforeAll(() => {
+  board = _board()
   // grid = game.setup();
-  grid = board.grid();
+  grid = board.setGrid();
   // obj1 = ship.generator([{ x: 4, y: 4 }]);
   // obj2 = ship.generator([
   //   { x: 0, y: 0 },
@@ -52,6 +53,7 @@ test("setting up a small boat randomnly", () => {
 let vertical2, vertical3, horizontal2, horizontal3, newShip;
 
 test("setting up getZones for different types of ships", () => {
+  
   horizontal3 = getZones(grid, 3, "horizontal");
   expect.arrayContaining(horizontal3);
   vertical2 = getZones(grid, 2, "vertical");

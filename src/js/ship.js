@@ -1,9 +1,10 @@
 import { board } from "./gameboard";
 
 const container = [];
+
 export const ship = {
-  layoutUpdater: (player, positions) => {
-    board.layout.map(item => {
+  layoutUpdater: (player, positions, grid) => {
+    grid.map(item => {
       positions.forEach(pos => {
         if (item.x == pos.x && item.y == pos.y) {
           item.water = false;
@@ -12,8 +13,9 @@ export const ship = {
       });
     });
   },
-  generator: positions => {
+  generator: (positions, boardObj, name) => {
     const ship = {};
+    ship.gridName = name;
     ship.id = `ship-${positions.length}`;
     ship.length = positions.length;
     ship.float = true;
@@ -24,8 +26,9 @@ export const ship = {
       ship.pos[idx].ok = true;
     });
 
-    board.setShipPosition(ship);
+    boardObj.setShipPosition(ship);
     container.push(ship);
+
     return ship;
   },
 
@@ -34,12 +37,15 @@ export const ship = {
     if (status.length === boat.length) boat.float = false;
   },
 
-  hit: (xx, yy) => {
+  hit: (xx, yy, oponent) => {
     const boat = container.filter(ship => {
-      for (let key in ship.pos) {
-        if (xx == ship.pos[key].x && yy == ship.pos[key].y) {
-          ship.pos[key].ok = false;
-          return ship;
+      
+      if (ship.gridName == oponent) {
+        for (let key in ship.pos) {
+          if (xx == ship.pos[key].x && yy == ship.pos[key].y) {
+            ship.pos[key].ok = false;
+            return ship;
+          }
         }
       }
     });
