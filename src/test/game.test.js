@@ -4,8 +4,7 @@ import { player } from "../js/player";
 import { game } from "../js/game";
 import { getZones } from "../js/zone";
 
-let grid = {};
-let board,
+let setup,
   obj1,
   obj2,
   obj3,
@@ -15,14 +14,18 @@ let board,
   playerObj,
   computerObj,
   gridPlayer,
-  gridComputer;
+  gridComputer,
+  humanPlayer,
+  computerPlayer;
 let ships = [];
 beforeAll(() => {
-  board = game.setup();
-  playerObj = board[0];
-  computerObj = board[1];
-  gridPlayer = playerObj.getGrid();
-  gridComputer = computerObj.getGrid();
+  setup = game.setup();
+  playerObj = setup.board1;
+  computerObj = setup.board2;
+  gridPlayer = setup.humanBoard;
+  gridComputer = setup.computerBoard;
+  humanPlayer = setup.human;
+  computerPlayer = setup.computer;
 
   obj1 = ship.generator([{ x: 4, y: 4 }], playerObj, "human");
   obj2 = ship.generator(
@@ -64,7 +67,7 @@ beforeAll(() => {
 });
 
 test("game exists", () => {
-  expect(game).toBeDefined();
+  expect(setup).toBeDefined();
 });
 
 test("there are two boards and six ships to start", () => {

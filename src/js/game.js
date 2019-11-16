@@ -10,7 +10,18 @@ export const game = {
     const board2 = _board();
     board1.setGrid();
     board2.setGrid();
-    return [board1, board2];
+    const humanPlayer = player();
+    const computerPlayer = player();
+    const playerObj = board1.getGrid();
+    const computerObj = board2.getGrid();
+    return {
+      board1,
+      board2,
+      human: humanPlayer,
+      computer: computerPlayer,
+      humanBoard: playerObj,
+      computerBoard: computerObj
+    };
   },
   randomizeSmallShip: (board, name = "computer") => {
     let { x, y } = giveMeOneFreeCell(board);
