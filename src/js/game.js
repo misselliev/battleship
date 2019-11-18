@@ -17,7 +17,6 @@ export const game = {
     const playerObj = board1.getGrid();
     const computerObj = board2.getGrid();
 
-    gridGenerator(playerObj);
     return {
       board1,
       board2,
