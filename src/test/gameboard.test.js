@@ -1,6 +1,4 @@
-import { board } from "../js/gameboard";
 import { ship } from "../js/ship";
-import { game } from "../js/game";
 import { init } from "../test/setupInit";
 
 let obj1, obj2, obj3;

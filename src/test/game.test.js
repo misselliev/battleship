@@ -1,6 +1,5 @@
 import { board as _board } from "../js/gameboard";
 import { ship } from "../js/ship";
-import { player } from "../js/player";
 import { game } from "../js/game";
 import { getZones } from "../js/zone";
 import { init } from "../test/setupInit";
