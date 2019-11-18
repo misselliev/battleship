@@ -65,23 +65,23 @@ test("setting up a small boat randomnly", () => {
 let vertical2, vertical3, horizontal2, horizontal3, newShip;
 
 test("setting up getZones for different types of ships", () => {
-  horizontal3 = getZones(init.gridHuman, 3, "horizontal");
+  horizontal3 = getZones(init.gridHuman, 3);
   expect.arrayContaining(horizontal3);
-  vertical2 = getZones(init.gridHuman, 2, "vertical");
+  vertical2 = getZones(init.gridHuman, 2);
   expect.arrayContaining(vertical2);
-  horizontal2 = getZones(init.gridHuman, 2, "horizontal");
+  horizontal2 = getZones(init.gridHuman, 2);
   expect.arrayContaining(horizontal3);
-  vertical3 = getZones(init.gridComputer, 3, "vertical");
+  vertical3 = getZones(init.gridComputer, 3);
   expect.arrayContaining(vertical2);
 });
 
 test("creating big boats randomnly vertical and horizontal", () => {
-  newShip = game.randomizeBigShip(horizontal3, init.humanObj, "human");
+  newShip = game.randomizeBigShip(init.humanObj, 3, "human");
   expect(newShip.id).toBe("ship-3");
   expect(newShip.length).toBe(3);
   if (newShip) ships.push(newShip);
   expect(ships.length).toBe(8);
-  newShip = game.randomizeBigShip(vertical2, init.computerObj);
+  newShip = game.randomizeBigShip(init.computerObj, 2);
   expect(newShip.id).toBe("ship-2");
   expect(newShip.length).toBe(2);
   if (newShip) ships.push(newShip);

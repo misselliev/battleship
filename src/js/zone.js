@@ -1,7 +1,8 @@
-export const getZones = (arr, size, direct) => {
+export const getZones = (arr, size) => {
   let idxCollection = [];
   let zones = [];
-
+  const randomDir = Math.round(Math.random() * 1);
+  const direct = randomDir == 0 ? 'horizontal' : 'vertical';
   arr.forEach((cell, idx) => {
     if (cell.water) idxCollection.push(idx);
   });

@@ -8,29 +8,36 @@ import { gridGenerator } from '../js/dom/loader';
 
 export const game = {
   setup: () => {
-    const board1 = _board();
-    const board2 = _board();
-    board1.setGrid();
-    board2.setGrid();
+    const humanObj = _board();
+    const computerObj = _board();
     const humanPlayer = player();
     const computerPlayer = player();
-    const playerObj = board1.getGrid();
-    const computerObj = board2.getGrid();
+    const playerGrid = humanObj.setGrid();
+    const computerGrid = computerObj.setGrid();
 
     return {
-      board1,
-      board2,
-      human: humanPlayer,
-      computer: computerPlayer,
-      humanBoard: playerObj,
-      computerBoard: computerObj
+      humanObj,
+      computerObj,
+      humanPlayer: humanPlayer,
+      computerPlayer: computerPlayer,
+      humanGrid: playerGrid,
+      computerGrid: computerGrid
     };
+  },
+  placeShips: (boardObj, name = 'computer') => {
+    let oneSize, twoSize, threeSize;
+
+    oneSize = game.randomizeSmallShip(boardObj, name);
+    twoSize = game.randomizeBigShip(boardObj, 2);
+    threeSize = game.randomizeBigShip(boardObj, 3);
+    return { oneSize, twoSize, threeSize }
   },
   randomizeSmallShip: (board, name = "computer") => {
     let { x, y } = giveMeOneFreeCell(board);
     return ship.generator([{ x, y }], board, name);
   },
-  randomizeBigShip: (positions, board, name = "computer") => {
+  randomizeBigShip: (board, size, name = "computer") => {
+    const positions = getZones(board.getGrid(), size)
     let arr = decode(positions);
     return ship.generator(arr, board, name);
   }
