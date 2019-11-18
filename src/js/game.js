@@ -3,6 +3,8 @@ import { board as _board } from "./gameboard";
 import { player } from "./player";
 import { giveMeOneFreeCell } from "./player";
 import { getZones, decode } from "./zone";
+import { gridGenerator } from '../js/dom/loader';
+
 
 export const game = {
   setup: () => {
@@ -14,6 +16,8 @@ export const game = {
     const computerPlayer = player();
     const playerObj = board1.getGrid();
     const computerObj = board2.getGrid();
+
+    gridGenerator(playerObj);
     return {
       board1,
       board2,
