@@ -11,3 +11,8 @@ body {
 h1 {
   color: black;
 }
+
+#player + #computer {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+}

@@ -7,7 +7,7 @@ export const gridGenerator = (userGrid) => {
 
   userGrid.forEach( (elem) => {
     console.log(elem)
-    cell = create('div', [{ innerText: 'x' }])
+    cell = create('div', [{ innerText: elem.shipId }])
     append(row, [cell]);    
   })
 
