@@ -4,7 +4,8 @@
   "description": "JS battleship game",
   "main": "index.js",
   "scripts": {
-    "test": "jest /src/js/  --watch a"
+    "test": "jest /src/js/  --watch a",
+    "watch": "webpack --watch --progress --mode development"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,11 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
+    "html-webpack-plugin": "^3.2.0",
+    "html-loader": "^0.5.5",
+    "file-loader": "^4.2.0",
     "jest": "^24.9.0",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
