@@ -87,3 +87,14 @@ test("creating big boats randomnly vertical and horizontal", () => {
   if (newShip) ships.push(newShip);
   expect(ships.length).toBe(9);
 });
+
+test("placing ships automatically", () => {
+  let { oneSize, twoSize, threeSize } = game.placeShips(init.computerObj);
+  expect(oneSize.id).toBe("ship-1");
+  expect(twoSize.id).toBe("ship-2");
+  expect(threeSize.id).toBe("ship-3");
+  expect(oneSize.length).toBe(1);
+  expect(twoSize.length).toBe(2);
+  expect(threeSize.length).toBe(3);
+  expect(init.computerObj.waterPosition().length).toBe(13);
+});
