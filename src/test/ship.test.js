@@ -1,23 +1,20 @@
 import { board as _board } from "../js/gameboard";
 import { ship } from "../js/ship";
-import { game } from "../js/game";
-import { log } from "util";
+import { init } from "../test/setupInit";
 
-let boardInit, grids, gridPlayer, gridComputer;
-let obj1, obj2, obj3;
-
+let obj1, obj2;
 
 beforeAll(() => {
-  boardInit = game.setup();
-  gridPlayer = boardInit[0];
-  gridComputer = boardInit[1];
-
-  obj1 = ship.generator([{ x: 4, y: 4 }], gridPlayer, 'human');
-  obj2 = ship.generator([
-    { x: 0, y: 0 },
-    { x: 0, y: 1 },
-    { x: 0, y: 2 }
-  ], gridPlayer, 'human');
+  obj1 = ship.generator([{ x: 4, y: 4 }], init.humanObj, "human");
+  obj2 = ship.generator(
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 1 },
+      { x: 0, y: 2 }
+    ],
+    init.humanObj,
+    "human"
+  );
 });
 test("ship object exists", () => {
   expect(obj1).toBeDefined();
@@ -51,7 +48,7 @@ describe("testing a ship integrity", () => {
 
 describe("testing a ship functions", () => {
   test("ship.pos.ok == false when a ship is impacted if position exists", () => {
-    ship.hit(0, 0, 'human');
+    ship.hit(0, 0, "human");
     expect(obj2.pos[0].ok).toBe(false);
   });
   test("a ship is not impacted if position doesnt exists", () => {
@@ -61,8 +58,8 @@ describe("testing a ship functions", () => {
     expect(obj2.pos[2].ok).toBe(true);
   });
   test("a ship isSunk() if all positions are hit", () => {
-    ship.hit(0, 1, 'human');
-    ship.hit(0, 2, 'human');
+    ship.hit(0, 1, "human");
+    ship.hit(0, 2, "human");
     expect(obj2.float).toBe(false);
   });
 });
