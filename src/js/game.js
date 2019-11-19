@@ -25,18 +25,20 @@ export const game = {
   placeShips: (boardObj, name = "computer") => {
     let oneSize, twoSize, threeSize;
 
-    // oneSize = game.randomizeSmallShip(boardObj, name);
+    oneSize = game.randomizeSmallShip(boardObj, name);
     threeSize = game.randomizeBigShip(boardObj, 3, name);
     twoSize = game.randomizeBigShip(boardObj, 2, name);
     return { oneSize, twoSize, threeSize };
   },
   randomizeSmallShip: (board, name = "computer") => {
     let { x, y } = giveMeOneFreeCell(board);
+    let index = y * 5 + x;
+    board.getOccupied().push(index);
     return ship.generator([{ x, y }], board, name);
   },
   randomizeBigShip: (board, size, name = "computer") => {
-    const positions = getZones(board.getGrid(), size);
-    let arr = decode(positions);
+    const positions = getZones(board, size);
+    let arr = decode(positions, board);
     return ship.generator(arr, board, name);
   }
 };

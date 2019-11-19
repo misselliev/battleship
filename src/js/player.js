@@ -1,7 +1,7 @@
 import { board as _board } from "./gameboard";
 
 export const giveMeOneFreeCell = board => {
-  const freeCells = board.getFreeCells();
+  const freeCells = board.waterPosition();
   const idx = Math.floor(Math.random() * freeCells.length);
   return freeCells[idx];
 };

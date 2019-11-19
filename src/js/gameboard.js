@@ -21,6 +21,8 @@ const gridGenerator = () => {
 
 export const board = () => {
   let layout = [];
+  let occupied = [];
+  const getOccupied = () => occupied;
   const getGrid = () => layout;
   const setGrid = () => (layout = gridGenerator());
   const getShips = () => layout.filter(cell => !cell.water);
@@ -36,10 +38,7 @@ export const board = () => {
     return layout.filter(cell => cell.used && cell.water);
   };
   const waterPosition = () => {
-    
-    console.log('========= ', new Date())
-    // console.log(layout.filter(cell => cell.water))
-    return layout.filter(cell => cell.water)
+    return layout.filter(cell => cell.water);
   };
 
   const setShipPosition = ship => {
@@ -62,6 +61,7 @@ export const board = () => {
   };
 
   return {
+    getOccupied,
     getShips,
     getUsedCells,
     setUsedCell,

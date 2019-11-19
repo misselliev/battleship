@@ -1,12 +1,17 @@
-let used = [];
-export const getZones = (arr, size) => {
-  console.log('getzones water', arr)
+import { board } from "./gameboard";
+
+export const getZones = (boardObj, size) => {
+  let used = boardObj.getOccupied();
+  let arr = boardObj.getGrid();
   let idxCollection = [];
   let zones = [];
   const randomDir = Math.round(Math.random() * 1);
   const direct = randomDir == 0 ? "horizontal" : "vertical";
-  if (used.length > 0) used = used.toString().split(',').map(item => parseInt(item));
-  console.log(used)
+  if (used.length > 0)
+    used = used
+      .toString()
+      .split(",")
+      .map(item => parseInt(item));
   arr.forEach((cell, idx) => {
     if (cell.water && !used.includes(idx)) idxCollection.push(idx);
   });
@@ -58,7 +63,8 @@ export const getZones = (arr, size) => {
   return zones;
 };
 
-export const decode = array => {
+export const decode = (array, boardObj) => {
+  let used = boardObj.getOccupied();
   const random = Math.floor(Math.random() * array.length);
   const coord = array[random];
   used.push(coord);
@@ -68,6 +74,5 @@ export const decode = array => {
     let y = Math.floor(item / 5);
     positions.push({ x, y });
   });
-  console.log("positions!!!!!!", positions);
   return positions;
 };
