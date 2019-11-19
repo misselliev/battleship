@@ -55,11 +55,11 @@ export const getZones = (arr, size) => {
   return zones;
 };
 
+let checker = [];
 export const decode = array => {
-  const random = Math.floor(Math.random() * array.length);
-  const coord = array[random];
   let positions = [];
-  coord.forEach(item => {
+  let pos = checkRepeated(array, checker);
+  pos.forEach(item => {
     let x = item % 5;
     let y = Math.floor(item / 5);
     positions.push({ x, y });
@@ -67,3 +67,30 @@ export const decode = array => {
   console.log("positions!!!!!!", positions);
   return positions;
 };
+
+function checkRepeated(array, checker) {
+  if (checker.length > 2) return checker;
+  let random = Math.floor(Math.random() * array.length);
+  let coord = array[random];
+  let b = checker.toString().split(",");
+  console.log("coord in fn", coord);
+  if (checker.length > 0) {
+    let a = coord.toString().split(",");
+    a.forEach(item => {
+      console.log("b", b);
+      console.log("item", item);
+      if (!b.includes(item)) {
+        checker.push(coord);
+        b = checker.toString().split(",");
+      } else {
+        random = Math.floor(Math.random() * array.length);
+        coord = array[random];
+        return checkRepeated(array, checker);
+      }
+      console.log("checker in for res:", checker);
+    });
+  } else {
+    checker.push(coord);
+  }
+  return coord;
+}

@@ -28,7 +28,6 @@ export const ship = {
 
     boardObj.setShipPosition(ship);
     container.push(ship);
-
     return ship;
   },
 
@@ -39,7 +38,6 @@ export const ship = {
 
   hit: (xx, yy, oponent) => {
     const boat = container.filter(ship => {
-      
       if (ship.gridName == oponent) {
         for (let key in ship.pos) {
           if (xx == ship.pos[key].x && yy == ship.pos[key].y) {

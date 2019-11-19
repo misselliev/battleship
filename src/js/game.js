@@ -3,8 +3,6 @@ import { board as _board } from "./gameboard";
 import { player } from "./player";
 import { giveMeOneFreeCell } from "./player";
 import { getZones, decode } from "./zone";
-import { gridGenerator } from '../js/dom/loader';
-
 
 export const game = {
   setup: () => {
@@ -24,20 +22,20 @@ export const game = {
       computerGrid: computerGrid
     };
   },
-  placeShips: (boardObj, name = 'computer') => {
+  placeShips: (boardObj, name = "computer") => {
     let oneSize, twoSize, threeSize;
 
-    oneSize = game.randomizeSmallShip(boardObj, name);
-    twoSize = game.randomizeBigShip(boardObj, 2);
-    threeSize = game.randomizeBigShip(boardObj, 3);
-    return { oneSize, twoSize, threeSize }
+    // oneSize = game.randomizeSmallShip(boardObj, name);
+    threeSize = game.randomizeBigShip(boardObj, 3, name);
+    twoSize = game.randomizeBigShip(boardObj, 2, name);
+    return { oneSize, twoSize, threeSize };
   },
   randomizeSmallShip: (board, name = "computer") => {
     let { x, y } = giveMeOneFreeCell(board);
     return ship.generator([{ x, y }], board, name);
   },
   randomizeBigShip: (board, size, name = "computer") => {
-    const positions = getZones(board.getGrid(), size)
+    const positions = getZones(board.waterPosition(), size);
     let arr = decode(positions);
     return ship.generator(arr, board, name);
   }
