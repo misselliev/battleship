@@ -35,7 +35,7 @@ export const game = {
     return ship.generator([{ x, y }], board, name);
   },
   randomizeBigShip: (board, size, name = "computer") => {
-    const positions = getZones(board.waterPosition(), size);
+    const positions = getZones(board.getGrid(), size);
     let arr = decode(positions);
     return ship.generator(arr, board, name);
   }

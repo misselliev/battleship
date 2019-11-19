@@ -91,9 +91,7 @@ beforeAll(() => {
 test("placing ships automatically", () => {
   let { twoSize, threeSize } = game.placeShips(init.computerObj);
   // console.log("one size", oneSize);
-  console.log("two size", twoSize);
-  console.log("three size", threeSize);
-  console.log("ships========", init.computerObj.getShips());
+
   // expect(oneSize.id).toBe("ship-1");
   expect(twoSize.id).toBe("ship-2");
   expect(threeSize.id).toBe("ship-3");

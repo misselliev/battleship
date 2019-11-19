@@ -1,10 +1,14 @@
+let used = [];
 export const getZones = (arr, size) => {
+  console.log('getzones water', arr)
   let idxCollection = [];
   let zones = [];
   const randomDir = Math.round(Math.random() * 1);
   const direct = randomDir == 0 ? "horizontal" : "vertical";
+  if (used.length > 0) used = used.toString().split(',').map(item => parseInt(item));
+  console.log(used)
   arr.forEach((cell, idx) => {
-    if (cell.water) idxCollection.push(idx);
+    if (cell.water && !used.includes(idx)) idxCollection.push(idx);
   });
 
   const validateEdge = val => {
@@ -51,13 +55,13 @@ export const getZones = (arr, size) => {
       });
     }
   }
-
   return zones;
 };
 
 export const decode = array => {
   const random = Math.floor(Math.random() * array.length);
   const coord = array[random];
+  used.push(coord);
   let positions = [];
   coord.forEach(item => {
     let x = item % 5;

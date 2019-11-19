@@ -35,7 +35,12 @@ export const board = () => {
   const getMissedHits = () => {
     return layout.filter(cell => cell.used && cell.water);
   };
-  const waterPosition = () => layout.filter(cell => cell.water);
+  const waterPosition = () => {
+    
+    console.log('========= ', new Date())
+    // console.log(layout.filter(cell => cell.water))
+    return layout.filter(cell => cell.water)
+  };
 
   const setShipPosition = ship => {
     Object.keys(ship.pos).forEach(key => {
