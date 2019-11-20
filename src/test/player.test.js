@@ -25,7 +25,7 @@ describe("check player integrity", () => {
   });
   test("player can shoot and miss", () => {
     init.humanPlayer.shoot(1, 4, "human", init.humanObj);
-    expect(init.humanObj.getGrid()[9].used).toBe(true);
+    expect(init.humanObj.getGrid()[21].used).toBe(true);
   });
   test("random() ", () => {
     expect(init.humanObj.getUsedCells().length).toBe(2);

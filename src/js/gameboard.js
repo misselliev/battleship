@@ -7,8 +7,8 @@ const gridGenerator = () => {
   for (let i = 0; i < boardSize; i += 1) {
     for (let j = 0; j < boardSize; j += 1) {
       grid.push({
-        x: i,
-        y: j,
+        x: j,
+        y: i,
         water: true,
         shipId: "",
         used: false,
