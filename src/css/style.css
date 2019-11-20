@@ -12,14 +12,16 @@ body {
 #container {
   display: grid;
   grid-template-columns: auto auto;
+  justify-items: center;
 }
 
 #human, #computer {
+  border: .1px solid black;
   display: grid;
   grid-template-columns: 5em 5em 5em 5em 5em;
   grid-template-rows: 5em 5em 5em 5em 5em;
 }
 
-div {
-  border: 1px solid black;
+.cell {
+  border: .1px solid black;
 }

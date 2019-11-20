@@ -1,6 +1,6 @@
 import { ship as _ship } from "./ship";
 
-const computeIdx = (posX, posY) => posX * boardSize + posY;
+const computeIdx = (posX, posY) => posY * boardSize + posX;
 const boardSize = 5;
 const gridGenerator = () => {
   const grid = [];
