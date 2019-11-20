@@ -9,7 +9,17 @@ body {
   background-size: cover;
 }
 
-#player+#computer {
+#container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto;
+}
+
+#human, #computer {
+  display: grid;
+  grid-template-columns: 5em 5em 5em 5em 5em;
+  grid-template-rows: 5em 5em 5em 5em 5em;
+}
+
+div {
+  border: 1px solid black;
 }

@@ -76,3 +76,10 @@ export const decode = (array, boardObj) => {
   });
   return positions;
 };
+
+export const decodeClick = index => {
+  let x = index * 5 + y;
+  let y = Math.floor(item / 5);
+  return { x, y };
+  // positions.push({ x, y });
+};
