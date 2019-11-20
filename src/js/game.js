@@ -2,7 +2,8 @@ import { ship } from "./ship";
 import { board as _board } from "./gameboard";
 import { player } from "./player";
 import { giveMeOneFreeCell } from "./player";
-import { getZones, decode } from "./zone";
+import { getZones, decode, decodeClick } from "./zone";
+import { getById } from "./dom/aux";
 
 export const game = {
   setup: () => {
@@ -40,5 +41,14 @@ export const game = {
     const positions = getZones(board, size);
     let arr = decode(positions, board);
     return ship.generator(arr, board, name);
+  }
+};
+export const humanAttack = async (boardObj, player, idx) => {
+  const target = decodeClick(idx);
+  const attack = await player.shoot(target.x, target.y, "computer", boardObj);
+  if (attack) {
+    getById(idx).style.backgroundColor = "yellow";
+  } else {
+    getById(idx).style.backgroundColor = "purple";
   }
 };
