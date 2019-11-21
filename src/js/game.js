@@ -51,4 +51,5 @@ export const humanAttack = async (boardObj, player, idx) => {
   } else {
     getById(idx).style.backgroundColor = "purple";
   }
+  return attack;
 };

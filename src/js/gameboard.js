@@ -1,6 +1,6 @@
 import { ship as _ship } from "./ship";
 
-const computeIdx = (posX, posY) => posY * boardSize + posX;
+export const computeIdx = (posX, posY) => posY * boardSize + posX;
 const boardSize = 5;
 const gridGenerator = () => {
   const grid = [];
@@ -53,7 +53,7 @@ export const board = () => {
     const myBoats = boardObj.getShips();
     const temp = myBoats.filter(ship => ship.x == posX && ship.y == posY);
     boardObj.setUsedCell(posX, posY);
-    if (temp) return _ship.hit(posX, posY, oponent);
+    if (temp) return _ship.hit(posX, posY, oponent, boardObj);
     if (!temp) return false;
   };
   const gameOver = () => {

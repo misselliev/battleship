@@ -36,7 +36,7 @@ export const ship = {
     if (status.length === boat.length) boat.float = false;
   },
 
-  hit: (xx, yy, oponent) => {
+  hit: (xx, yy, oponent, contenderObj) => {
     const boat = container.filter(ship => {
       if (ship.gridName == oponent) {
         for (let key in ship.pos) {
@@ -49,6 +49,10 @@ export const ship = {
     });
     if (boat[0]) {
       ship.isSunk(boat[0]);
+      const winner = oponent == 'human' ? "Computer" : 'Human';
+      if (contenderObj.gameOver()) {
+        alert(`${winner} wins!`)
+      }
       return true;
     } else {
       return false;

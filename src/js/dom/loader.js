@@ -4,46 +4,32 @@ import { board } from "../gameboard";
 import { player } from "../player";
 import { game, humanAttack } from "../game";
 
-export const gridGenerator = (boardObj, divId, playerA) => {
-  let userGrid = boardObj.getGrid();
+export const gridGenerator = (destinyObj, contenderObj, divId, human) => {
+  let userGrid = destinyObj.getGrid();
   let cell, row;
-  // row = create("div");
 
   userGrid.forEach((elem, idx) => {
     cell = create("div", [{ innerText: elem.shipId }, { className: "cell" }]);
     if (cell.innerText == "ship-1") cell.style.backgroundColor = "blue";
     if (cell.innerText == "ship-2") cell.style.backgroundColor = "red";
     if (cell.innerText == "ship-3") cell.style.backgroundColor = "orange";
-    // append(row, [cell]);
+
     if (divId == "computer") {
       cell.id = idx;
       cell.addEventListener("click", () => {
-        // const target = decodeClick(idx);
-        // const result = boardObj.receiveAttack(
-        //   target.x,
-        //   target.y,
-        //   "computer",
-        //   boardObj
-        // );
-        // const humanAttack = async () => {
-        //   const attack = await A.shoot(
-        //     target.x,
-        //     target.y,
-        //     "computer",
-        //     boardObj
-        //   );
-        //   if (attack) {
-        //     getById(idx).style.backgroundColor = "yellow";
-        //   } else {
-        //     getById(idx).style.backgroundColor = "purple";
-        //   }
-        // };
-        let a = humanAttack(boardObj, playerA, idx).then((resolve, reject) => {
+        humanAttack(contenderObj, human, idx).then((resolve) => {
           if (resolve) {
-            player.randomShoot("human", boardObj);
+            return
+          } else {
+            const res = human.randomShoot('human', destinyObj);
+            human.bonus(res, 'human', destinyObj);
           }
-        });
+          cell.removeEventListener('click', () => humanAttack(contenderObj, human, idx));
+        }).catch(err => console.log('No more cells available!'));
+
       });
+    } else {
+      cell.id = `c-${idx}`;
     }
     append(getById(divId), [cell]);
   });
