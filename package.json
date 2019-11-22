@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest /src/js/  --watch a",
-    "watch": "webpack --watch --progress --mode development"
+    "watch": "webpack --watch --progress --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
