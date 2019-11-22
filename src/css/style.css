@@ -28,13 +28,32 @@ h2 {
   justify-items: center;
 }
 
-#human, #computer {
-  border: .1px solid black;
+#human,
+#computer {
+  border: 0.1px solid black;
   display: grid;
   grid-template-columns: 5em 5em 5em 5em 5em;
   grid-template-rows: 5em 5em 5em 5em 5em;
 }
 
 .cell {
-  border: .1px solid black;
+  border: 0.1px solid black;
+  background: white;
+}
+
+.button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 1.5em;
+}
+
+.button:hover {
+  background-color: white;
+  color: #008cba;
 }
