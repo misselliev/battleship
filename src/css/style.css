@@ -14,8 +14,12 @@ h1 {
   font-weight: bold;
   font-size: 4em;
   text-shadow: 2px 2px 4px darkgrey;
-  margin-bottom: 0.7em;
+  margin-bottom: 0.5em;
   font-style: italic;
+}
+
+h2 {
+  margin-bottom: 1.5em;
 }
 
 #container {
