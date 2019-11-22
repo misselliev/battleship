@@ -1,6 +1,6 @@
 import { board } from "./gameboard";
 
-const container = [];
+let container = [];
 
 export const ship = {
   layoutUpdater: (player, positions, grid) => {
@@ -53,5 +53,6 @@ export const ship = {
     } else {
       return false;
     }
-  }
+  },
+  resetContainer: () => container = []
 };

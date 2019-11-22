@@ -1,7 +1,7 @@
 import fav from "../src/img/favicon.ico";
 import "../src/css/style.css";
 import { game } from "../src/js/game";
-import { gridGenerator } from "../src/js/dom/loader";
+import { gridGenerator, resetDom } from "../src/js/dom/loader";
 import { getById } from "../src/js/dom/aux";
 
 (function setupFavicon() {
@@ -9,8 +9,9 @@ import { getById } from "../src/js/dom/aux";
   setFav.href = fav;
 })();
 
-(function startGame() {
-  const start = game.setup();
+let start;
+function startGame() {
+  start = game.setup();
   game.placeShips(start.humanObj, "human");
   game.placeShips(start.computerObj);
   gridGenerator(
@@ -21,6 +22,12 @@ import { getById } from "../src/js/dom/aux";
   );
   gridGenerator(start.humanObj, start.computerObj, "human", start.humanPlayer);
   return start;
-})();
+};
 
-getById("start").addEventListener("click", () => {});
+getById("start").addEventListener("click", () => {
+  resetDom();
+  game.restart(start.humanObj, start.computerObj);
+  startGame();
+});
+
+startGame();

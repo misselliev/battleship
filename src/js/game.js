@@ -51,6 +51,11 @@ export const game = {
       winner = computerShips ? "Human" : "Computer";
       alert(`${winner} wins`);
     }
+  },
+  restart: (humanBoard, computerBoard) => {
+    humanBoard.layout = [];
+    computerBoard.layout = [];
+    ship.resetContainer();
   }
 };
 export const humanAttack = async (boardObj, player, idx) => {

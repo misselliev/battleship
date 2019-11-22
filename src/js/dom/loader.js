@@ -40,3 +40,8 @@ export const gridGenerator = (humanObj, computerObj, divId, human) => {
     append(getById(divId), [cell]);
   });
 };
+
+export const resetDom = () => {
+  getById('computer').innerHTML = '';
+  getById('human').innerHTML = '';
+};
