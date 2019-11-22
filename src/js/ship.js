@@ -49,10 +49,6 @@ export const ship = {
     });
     if (boat[0]) {
       ship.isSunk(boat[0]);
-      const winner = oponent == 'human' ? "Computer" : 'Human';
-      if (contenderObj.gameOver()) {
-        alert(`${winner} wins!`)
-      }
       return true;
     } else {
       return false;

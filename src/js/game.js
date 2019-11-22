@@ -41,6 +41,16 @@ export const game = {
     const positions = getZones(board, size);
     let arr = decode(positions, board);
     return ship.generator(arr, board, name);
+  },
+  gameOver: (humanBoard, computerBoard) => {
+    const computerShips = computerBoard.getShips().every(cell => cell.used);
+    const humanShips = humanBoard.getShips().every(cell => cell.used);
+
+    let winner = "";
+    if (computerShips || humanShips) {
+      winner = computerShips ? "Human" : "Computer";
+      alert(`${winner} wins`);
+    }
   }
 };
 export const humanAttack = async (boardObj, player, idx) => {

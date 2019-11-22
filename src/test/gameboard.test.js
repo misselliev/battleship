@@ -1,5 +1,6 @@
 import { ship } from "../js/ship";
 import { init } from "../test/setupInit";
+import { game } from "../js/game";
 
 let obj1, obj2, obj3;
 
@@ -65,12 +66,6 @@ describe("check game integrity", () => {
       .getUsedCells()
       .filter(cell => cell.x == posX && cell.y == posY);
     expect(usedCell[0].used).toBe(true);
-  });
-
-  test("gameOver() returns true if there are no ships to hit", () => {
-    init.humanObj.receiveAttack(3, 1, "computer", init.computerObj);
-    init.humanObj.receiveAttack(3, 2, "computer", init.computerObj);
-    expect(init.computerObj.gameOver()).toBe(true);
   });
 
   test("getMissedHits() should return all the cells where the player has shoot and there are no ships", () => {

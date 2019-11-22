@@ -4,12 +4,10 @@ import { getById } from "./dom/aux";
 export const giveMeOneFreeCell = board => {
   const freeCells = board.getFreeCells();
   const idx = Math.floor(Math.random() * freeCells.length);
-  
   return freeCells[idx];
 };
 
 export const player = () => {
-
   const shoot = (xx, yy, oponent, boardObj) =>
     boardObj.receiveAttack(xx, yy, oponent, boardObj);
 
@@ -30,12 +28,12 @@ export const player = () => {
   };
 
   const updateColor = (xx, yy, status) => {
-    const idx = computeIdx(xx, yy)
+    const idx = computeIdx(xx, yy);
     if (status) {
       getById(`c-${idx}`).style.backgroundColor = "yellow";
     } else {
       getById(`c-${idx}`).style.backgroundColor = "purple";
     }
-  }
+  };
   return { shoot, randomShoot, bonus };
 };

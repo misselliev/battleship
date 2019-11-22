@@ -29,8 +29,7 @@ export const board = () => {
   const getUsedCells = () => layout.filter(cell => cell.used);
   const setUsedCell = (posX, posY) => {
     const idx = computeIdx(posX, posY);
-    const cell = layout[idx];
-    cell.used = true;
+    layout[idx].used = true;
   };
   const getFreeCells = () => layout.filter(cell => !cell.used);
 
@@ -56,9 +55,6 @@ export const board = () => {
     if (temp) return _ship.hit(posX, posY, oponent, boardObj);
     if (!temp) return false;
   };
-  const gameOver = () => {
-    return getShips().every(cell => cell.used);
-  };
 
   return {
     getOccupied,
@@ -71,7 +67,6 @@ export const board = () => {
     getGrid,
     setGrid,
     setShipPosition,
-    receiveAttack,
-    gameOver
+    receiveAttack
   };
 };
