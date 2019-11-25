@@ -1,44 +1,48 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   // mode: 'development',
   watch: true,
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist")
   },
   stats: { children: false },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
       inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: false
       }
-    }),
+    })
     // This can be deleted, only index is required.
     // new HtmlWebpackPlugin({
     //   filename: 'createProjectModal.html',
     //   template: 'src/createProjectModal.html'
     // }),
   ],
+  resolve: {
+    modules: [__dirname, "node_modules"],
+    extensions: ["*", ".js", ".jsx"]
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
-              outputPath: (file) => file.split('src/')
+              name: "[path][name].[ext]",
+              outputPath: file => file.split("src/")
             }
           }
         ]
@@ -47,7 +51,7 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
             options: {
               minimize: true,
               removeComments: false,
@@ -60,11 +64,11 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
-              outputPath: (file) => {
-                const path = file.split('src/');
+              name: "[path][name].[ext]",
+              outputPath: file => {
+                const path = file.split("src/");
                 return path;
               }
             }
